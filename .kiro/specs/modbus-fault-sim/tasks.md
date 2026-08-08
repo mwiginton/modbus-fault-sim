@@ -7,13 +7,13 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
 ## Tasks
 
 - [ ] 1. Protocol layer foundations
-  - [ ] 1.1 Implement frame-builder module
+  - [x] 1.1 Implement frame-builder module
     - Create `src/protocol/frame-builder.ts`
     - Implement `buildResponse(opts, pdu)` that constructs a complete Modbus TCP response frame with correct MBAP header (transaction ID echo, protocol ID 0x0000, length field, unit ID echo)
     - Implement `buildException(opts, functionCode, exceptionCode)` that produces a 9-byte exception frame
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 5.1, 6.1_
 
-  - [ ]* 1.2 Write property tests for frame-builder (Property 1: MBAP Header Invariants)
+  - [x] 1.2 Write property tests for frame-builder (Property 1: MBAP Header Invariants)
     - **Property 1: MBAP Header Invariants**
     - Create `tests/protocol/frame-builder.test.ts`
     - For any valid request parameters, verify response frame has correct transaction ID echo, protocol ID 0x0000, correct length field, and correct unit ID

@@ -1,0 +1,357 @@
+{
+  "pbtResults": {
+    "1.2 Write property tests for frame-builder (Property 1: MBAP Header Invariants)": {
+      "status": "passed",
+      "lastRunTimestamp": 1786202031524
+    }
+  },
+  "executionHistory": {
+    "1.1 Implement frame-builder module": [
+      {
+        "executionId": "a70bc44a-5c9f-4cea-9492-000042a30645",
+        "chatSessionId": "sess_8fe3adf0-c721-4849-a7ea-8aa45d8b020c",
+        "timestamp": 1786200338292
+      },
+      {
+        "executionId": "bee16e19-6f1e-47bf-a470-20771f6fc78b",
+        "chatSessionId": "sess_2fa03ecb-f5d8-4385-8cfc-a5cac5ea34cc",
+        "timestamp": 1786200482255
+      },
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201465948
+      },
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201480237
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657195
+      },
+      {
+        "executionId": "3b08153b-a7cd-43e8-8a2f-c426d16c6542",
+        "chatSessionId": "sess_aa6dede3-3af3-41d8-8164-d3015b92c01a",
+        "timestamp": 1786201676604
+      },
+      {
+        "executionId": "3b08153b-a7cd-43e8-8a2f-c426d16c6542",
+        "chatSessionId": "sess_aa6dede3-3af3-41d8-8164-d3015b92c01a",
+        "timestamp": 1786201856650
+      }
+    ],
+    "1.5 Implement float32 encoding utilities": [
+      {
+        "executionId": "bee16e19-6f1e-47bf-a470-20771f6fc78b",
+        "chatSessionId": "sess_2fa03ecb-f5d8-4385-8cfc-a5cac5ea34cc",
+        "timestamp": 1786200482960
+      },
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466130
+      },
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201480965
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657305
+      }
+    ],
+    "1.3 Implement frame-parser module": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466030
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657255
+      }
+    ],
+    "2. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466195
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657353
+      }
+    ],
+    "3.1 Define configuration schema types": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466255
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657405
+      }
+    ],
+    "3.2 Implement configuration validator": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466310
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657463
+      }
+    ],
+    "3.6 Implement configuration loader": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466375
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657518
+      }
+    ],
+    "3.7 Implement pretty-printer": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466447
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657592
+      }
+    ],
+    "4. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466503
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657645
+      }
+    ],
+    "5.1 Implement behavior value computation": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466568
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657697
+      }
+    ],
+    "5.4 Implement register store": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466638
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657754
+      }
+    ],
+    "6. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466725
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657809
+      }
+    ],
+    "7.1 Implement FC 03 handler": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466782
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657863
+      }
+    ],
+    "7.3 Implement FC 06 handler": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466840
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201657923
+      }
+    ],
+    "7.5 Implement FC 16 handler": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466901
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658001
+      }
+    ],
+    "7.7 Implement router": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201466965
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658054
+      }
+    ],
+    "8. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467026
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658106
+      }
+    ],
+    "9.1 Implement fault engine": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467091
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658160
+      }
+    ],
+    "9.3 Implement scenario scheduler": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467147
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658213
+      }
+    ],
+    "10. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467215
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658267
+      }
+    ],
+    "11.1 Implement TCP server": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467270
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658325
+      }
+    ],
+    "11.2 Implement connection handler": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467352
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658378
+      }
+    ],
+    "12.1 Implement CLI entrypoint": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467419
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658434
+      }
+    ],
+    "13.1 Create example YAML configurations": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467480
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658485
+      }
+    ],
+    "14. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "e9092872-9e18-4d07-8ad7-b9a30ab2adc3",
+        "chatSessionId": "sess_bf988609-77aa-4d1d-b567-1bdd6611c59e",
+        "timestamp": 1786201467537
+      },
+      {
+        "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
+        "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
+        "timestamp": 1786201658570
+      }
+    ],
+    "1.2 Write property tests for frame-builder (Property 1: MBAP Header Invariants)": [
+      {
+        "executionId": "1deca896-8cef-4a8e-b384-c88fa3f4e8c4",
+        "chatSessionId": "sess_4b568739-ec46-4715-ba2f-c85d71a8e751",
+        "timestamp": 1786201970298
+      },
+      {
+        "executionId": "1deca896-8cef-4a8e-b384-c88fa3f4e8c4",
+        "chatSessionId": "sess_4b568739-ec46-4715-ba2f-c85d71a8e751",
+        "timestamp": 1786202041131
+      }
+    ]
+  }
+}
