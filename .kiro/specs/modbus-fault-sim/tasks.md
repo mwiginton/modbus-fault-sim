@@ -20,7 +20,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Use `fc.nat(65535)` for transaction IDs, `fc.nat(255)` for unit IDs, `fc.uint8Array` for PDUs
     - **Validates: Requirements 4.1, 4.2, 4.3, 4.4**
 
-  - [ ] 1.3 Implement frame-parser module
+  - [x] 1.3 Implement frame-parser module
     - Create `src/protocol/frame-parser.ts`
     - Implement `FrameParser` class with `feed(data: Buffer): ModbusRequest[]` that accumulates TCP bytes and extracts complete frames using the MBAP length field
     - Handle partial frames (buffer until complete), coalesced frames (multiple frames in one chunk), protocol ID validation (discard non-0x0000), and PDU length check (close if < 1 byte after header)
