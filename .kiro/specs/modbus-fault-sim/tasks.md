@@ -6,7 +6,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
 
 ## Tasks
 
-- [ ] 1. Protocol layer foundations
+- [x] 1. Protocol layer foundations
   - [x] 1.1 Implement frame-builder module
     - Create `src/protocol/frame-builder.ts`
     - Implement `buildResponse(opts, pdu)` that constructs a complete Modbus TCP response frame with correct MBAP header (transaction ID echo, protocol ID 0x0000, length field, unit ID echo)
@@ -35,13 +35,13 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify that valid frames are correctly parsed regardless of chunking
     - **Validates: Requirements 4.5, 5.2**
 
-  - [ ] 1.5 Implement float32 encoding utilities
+  - [x] 1.5 Implement float32 encoding utilities
     - Create `src/protocol/float32.ts`
     - Implement `float32ToWords(value): [highWord, lowWord]` and `wordsToFloat32(high, low): number`
     - IEEE 754 single-precision, big-endian word order (high word at address N, low word at N+1)
     - _Requirements: 10.1, 10.3_
 
-  - [ ]* 1.6 Write property tests for float32 encoding (Property 19)
+  - [x] 1.6 Write property tests for float32 encoding (Property 19)
     - **Property 19: Float32 Encoding Round Trip**
     - Create `tests/protocol/float32.test.ts`
     - For any IEEE 754 representable float32 (no NaN/Infinity), encoding to words and decoding back produces bitwise identical value
