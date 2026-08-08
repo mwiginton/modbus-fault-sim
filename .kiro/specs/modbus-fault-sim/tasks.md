@@ -47,7 +47,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - For any IEEE 754 representable float32 (no NaN/Infinity), encoding to words and decoding back produces bitwise identical value
     - **Validates: Requirements 10.1, 10.3**
 
-- [ ] 2. Checkpoint - Ensure all tests pass
+- [x] 2. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 3. Configuration layer
