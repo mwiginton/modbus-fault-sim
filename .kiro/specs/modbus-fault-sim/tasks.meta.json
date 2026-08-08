@@ -3,6 +3,10 @@
     "1.2 Write property tests for frame-builder (Property 1: MBAP Header Invariants)": {
       "status": "passed",
       "lastRunTimestamp": 1786202031524
+    },
+    "1.4 Write property tests for frame-parser (Properties 2, 3)": {
+      "status": "passed",
+      "lastRunTimestamp": 1786202731182
     }
   },
   "executionHistory": {
@@ -351,6 +355,18 @@
         "executionId": "1deca896-8cef-4a8e-b384-c88fa3f4e8c4",
         "chatSessionId": "sess_4b568739-ec46-4715-ba2f-c85d71a8e751",
         "timestamp": 1786202041131
+      }
+    ],
+    "1.4 Write property tests for frame-parser (Properties 2, 3)": [
+      {
+        "executionId": "c89745be-ad0c-41a8-909d-2f2ef78c0072",
+        "chatSessionId": "sess_4f93dd10-1b67-44ec-93b3-045fdb8ac584",
+        "timestamp": 1786202698441
+      },
+      {
+        "executionId": "c89745be-ad0c-41a8-909d-2f2ef78c0072",
+        "chatSessionId": "sess_4f93dd10-1b67-44ec-93b3-045fdb8ac584",
+        "timestamp": 1786202740046
       }
     ]
   }

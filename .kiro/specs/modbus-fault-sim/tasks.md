@@ -27,7 +27,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Implement `reset()` for connection cleanup
     - _Requirements: 4.1–4.5, 5.2_
 
-  - [ ]* 1.4 Write property tests for frame-parser (Properties 2, 3)
+  - [x] 1.4 Write property tests for frame-parser (Properties 2, 3)
     - **Property 2: Non-Zero Protocol ID Discards**
     - **Property 3: Unknown Unit ID Discards** (tested at router level, but parser validates protocol ID)
     - Create `tests/protocol/frame-parser.test.ts`
