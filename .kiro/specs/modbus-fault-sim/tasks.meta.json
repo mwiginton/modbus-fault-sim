@@ -11,6 +11,18 @@
     "1.6 Write property tests for float32 encoding (Property 19)": {
       "status": "passed",
       "lastRunTimestamp": 1786202964454
+    },
+    "3.3 Write property tests for address conversion (Properties 16, 17)": {
+      "status": "passed",
+      "lastRunTimestamp": 1786278967068
+    },
+    "3.4 Write property tests for overlap detection (Property 18)": {
+      "status": "passed",
+      "lastRunTimestamp": 1786279232865
+    },
+    "3.5 Write property tests for scenario validation (Property 34)": {
+      "status": "passed",
+      "lastRunTimestamp": 1786279350374
     }
   },
   "executionHistory": {
@@ -195,6 +207,16 @@
         "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
         "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
         "timestamp": 1786201657645
+      },
+      {
+        "executionId": "13d6d037-baf8-4e87-a2ee-270d519d7551",
+        "chatSessionId": "sess_b0a21454-93d6-490a-9e41-2450ec04f34c",
+        "timestamp": 1786279480358
+      },
+      {
+        "executionId": "13d6d037-baf8-4e87-a2ee-270d519d7551",
+        "chatSessionId": "sess_b0a21454-93d6-490a-9e41-2450ec04f34c",
+        "timestamp": 1786279498942
       }
     ],
     "5.1 Implement behavior value computation": [
@@ -437,6 +459,42 @@
         "executionId": "09d37425-300f-4c91-9e7e-078530309641",
         "chatSessionId": "sess_87581186-c023-41b0-9f85-7ad8d369682c",
         "timestamp": 1786278688893
+      }
+    ],
+    "3.3 Write property tests for address conversion (Properties 16, 17)": [
+      {
+        "executionId": "e7405b11-5340-4ad3-bba3-ce10918377be",
+        "chatSessionId": "sess_b930a207-d702-43d0-9ad0-a164a6d60b45",
+        "timestamp": 1786278870721
+      },
+      {
+        "executionId": "e7405b11-5340-4ad3-bba3-ce10918377be",
+        "chatSessionId": "sess_b930a207-d702-43d0-9ad0-a164a6d60b45",
+        "timestamp": 1786278975520
+      }
+    ],
+    "3.4 Write property tests for overlap detection (Property 18)": [
+      {
+        "executionId": "8d8bbbef-b71b-4e79-9289-8c4ac04639df",
+        "chatSessionId": "sess_8ee2866b-3aa9-416d-80d9-af9228cf12fd",
+        "timestamp": 1786279050200
+      },
+      {
+        "executionId": "8d8bbbef-b71b-4e79-9289-8c4ac04639df",
+        "chatSessionId": "sess_8ee2866b-3aa9-416d-80d9-af9228cf12fd",
+        "timestamp": 1786279243603
+      }
+    ],
+    "3.5 Write property tests for scenario validation (Property 34)": [
+      {
+        "executionId": "26879b15-b08e-4a3a-8dd4-31b4ba1f7272",
+        "chatSessionId": "sess_52929144-3a6e-41fc-a9e8-59b4f7ebe557",
+        "timestamp": 1786279287750
+      },
+      {
+        "executionId": "26879b15-b08e-4a3a-8dd4-31b4ba1f7272",
+        "chatSessionId": "sess_52929144-3a6e-41fc-a9e8-59b4f7ebe557",
+        "timestamp": 1786279361184
       }
     ]
   }

@@ -64,7 +64,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Collect all errors (don't fail on first)
     - _Requirements: 7.1, 7.2, 7.3, 8.1, 8.2, 8.3, 9.1, 9.2, 9.3, 16.4_
 
-  - [ ]* 3.3 Write property tests for address conversion (Properties 16, 17)
+  - [x] 3.3 Write property tests for address conversion (Properties 16, 17)
     - **Property 16: Address Base Conversion**
     - **Property 17: Documentation Address Rejection**
     - Create `tests/config/validator.test.ts`
@@ -73,13 +73,13 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - For any address A with `addressBase: 'zero'` or absent, wire address equals A
     - **Validates: Requirements 8.1, 8.2, 8.3**
 
-  - [ ]* 3.4 Write property tests for overlap detection (Property 18)
+  - [x] 3.4 Write property tests for overlap detection (Property 18)
     - **Property 18: Overlap Detection Completeness**
     - Add to `tests/config/validator.test.ts`
     - For any set of registers with N overlapping pairs (float32 claims 2 addresses), validator reports exactly those N overlaps
     - **Validates: Requirements 9.1, 9.2, 9.3**
 
-  - [ ]* 3.5 Write property tests for scenario validation (Property 34)
+  - [x] 3.5 Write property tests for scenario validation (Property 34)
     - **Property 34: Scenario Entry Validation**
     - Add to `tests/config/validator.test.ts`
     - For any scenario entry with invalid fault type or non-existent target, validator rejects with identifying error
@@ -92,7 +92,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Handle file-not-found and YAML syntax errors
     - _Requirements: 7.1, 7.2, 7.3_
 
-- [ ] 4. Checkpoint - Ensure all tests pass
+- [x] 4. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 5. Signal generators and register store
