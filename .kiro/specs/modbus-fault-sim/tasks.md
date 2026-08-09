@@ -57,7 +57,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Define `ValidationError` interface with `path` and `message` fields
     - _Requirements: 7.1_
 
-  - [ ] 3.2 Implement configuration validator
+  - [x] 3.2 Implement configuration validator
     - Create `src/config/validator.ts`
     - Implement `validateConfig(raw: unknown): ConfigFile | ValidationError[]`
     - Validate required fields (listen, devices, scenario), type checks, address base conversion, overlap detection, scenario reference validation
