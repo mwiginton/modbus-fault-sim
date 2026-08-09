@@ -51,7 +51,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 3. Configuration layer
-  - [ ] 3.1 Define configuration schema types
+  - [x] 3.1 Define configuration schema types
     - Create `src/config/schema.ts`
     - Define TypeScript interfaces: `ConfigFile`, `ListenConfig`, `DeviceConfig`, `RegisterConfig`, `BehaviorConfigYaml`, `ScenarioEntryConfig`
     - Define `ValidationError` interface with `path` and `message` fields
@@ -91,17 +91,6 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Read YAML file using `yaml` package, pass to validator, return result
     - Handle file-not-found and YAML syntax errors
     - _Requirements: 7.1, 7.2, 7.3_
-
-  - [ ] 3.7 Implement pretty-printer
-    - Create `src/config/pretty-printer.ts`
-    - Implement `prettyPrint(config: ConfigFile): string` that serializes to valid YAML
-    - _Requirements: 7.4, 7.5_
-
-  - [ ]* 3.8 Write property tests for config round trip (Property 15)
-    - **Property 15: Configuration Round Trip**
-    - Create `tests/config/pretty-printer.test.ts`
-    - For any valid ConfigFile, prettyPrint then parse produces deeply equal structure
-    - **Validates: Requirements 7.4, 7.5**
 
 - [ ] 4. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
