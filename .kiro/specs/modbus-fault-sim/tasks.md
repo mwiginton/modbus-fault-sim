@@ -50,7 +50,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
 - [x] 2. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 3. Configuration layer
+- [x] 3. Configuration layer
   - [x] 3.1 Define configuration schema types
     - Create `src/config/schema.ts`
     - Define TypeScript interfaces: `ConfigFile`, `ListenConfig`, `DeviceConfig`, `RegisterConfig`, `BehaviorConfigYaml`, `ScenarioEntryConfig`
@@ -85,7 +85,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - For any scenario entry with invalid fault type or non-existent target, validator rejects with identifying error
     - **Validates: Requirements 16.4**
 
-  - [ ] 3.6 Implement configuration loader
+  - [x] 3.6 Implement configuration loader
     - Create `src/config/loader.ts`
     - Implement `loadConfig(filePath: string): ConfigFile | ValidationError[]`
     - Read YAML file using `yaml` package, pass to validator, return result
