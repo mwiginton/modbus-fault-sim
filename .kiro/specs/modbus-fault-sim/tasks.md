@@ -96,7 +96,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 5. Signal generators and register store
-  - [ ] 5.1 Implement behavior value computation
+  - [x] 5.1 Implement behavior value computation
     - Create `src/signals/behaviors.ts`
     - Implement `computeSine(params, elapsedMs)`: midpoint + amplitude × sin(2π × elapsed / period)
     - Implement `computeRamp(params, elapsedMs)`: linear interpolation, clamped at end, truncated toward zero
