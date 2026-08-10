@@ -103,7 +103,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Implement `computeBehaviorValue(config, elapsedMs)` dispatcher
     - _Requirements: 11.1–11.4, 12.1–12.3_
 
-  - [ ]* 5.2 Write property tests for sine behavior (Properties 21, 22, 23, 24)
+  - [x] 5.2 Write property tests for sine behavior (Properties 21, 22, 23, 24)
     - **Property 21: Sine Behavior Formula**
     - **Property 22: Sine Behavior Periodicity**
     - **Property 23: Sine Behavior Initial Conditions**
