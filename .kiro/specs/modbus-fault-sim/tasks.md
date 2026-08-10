@@ -112,7 +112,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify formula correctness, periodicity (value at T equals value at T + period), initial conditions (midpoint at T=0, max at T=period/4), and Math.round for uint16
     - **Validates: Requirements 11.1, 11.2, 11.3, 11.4**
 
-  - [ ]* 5.3 Write property tests for ramp behavior (Properties 25, 26)
+  - [x] 5.3 Write property tests for ramp behavior (Properties 25, 26)
     - **Property 25: Ramp Behavior Formula**
     - **Property 26: Ramp Behavior Clamping**
     - Create `tests/signals/ramp.test.ts`
