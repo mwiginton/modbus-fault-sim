@@ -95,7 +95,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
 - [x] 4. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 5. Signal generators and register store
+- [x] 5. Signal generators and register store
   - [x] 5.1 Implement behavior value computation
     - Create `src/signals/behaviors.ts`
     - Implement `computeSine(params, elapsedMs)`: midpoint + amplitude × sin(2π × elapsed / period)
@@ -119,7 +119,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify linear formula with Math.trunc, and clamping to end value after duration
     - **Validates: Requirements 12.1, 12.2, 12.3**
 
-  - [ ] 5.4 Implement register store
+  - [x] 5.4 Implement register store
     - Create `src/signals/register-store.ts`
     - Implement `RegisterStore` class with injectable clock
     - Support `readRegisters`, `writeSingle`, `writeMultiple` with address validation
