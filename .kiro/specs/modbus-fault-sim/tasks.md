@@ -128,7 +128,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Apply behaviors when computing current values
     - _Requirements: 1.1, 2.1, 2.2, 3.1, 10.1–10.4, 13.1–13.4_
 
-  - [ ]* 5.5 Write property tests for register store (Properties 7, 19, 20, 27, 28, 29, 30)
+  - [x] 5.5 Write property tests for register store (Properties 7, 19, 20, 27, 28, 29, 30)
     - **Property 7: FC 06 Write-Then-Read Round Trip**
     - **Property 20: Float32 Read Consistency**
     - **Property 27: Freeze Captures and Holds Value**

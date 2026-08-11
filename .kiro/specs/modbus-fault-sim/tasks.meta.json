@@ -31,6 +31,10 @@
     "5.3 Write property tests for ramp behavior (Properties 25, 26)": {
       "status": "passed",
       "lastRunTimestamp": 1786397620103
+    },
+    "5.5 Write property tests for register store (Properties 7, 19, 20, 27, 28, 29, 30)": {
+      "status": "passed",
+      "lastRunTimestamp": 1786446187902
     }
   },
   "executionHistory": {
@@ -554,6 +558,18 @@
         "executionId": "0354ef77-1ddd-4d5a-8d3f-47d89f6b7ef1",
         "chatSessionId": "sess_739d1176-ee74-43c4-8dea-7be76b3c2b18",
         "timestamp": 1786399086399
+      }
+    ],
+    "5.5 Write property tests for register store (Properties 7, 19, 20, 27, 28, 29, 30)": [
+      {
+        "executionId": "3fc37f00-1d3d-439b-907a-21eb564e58ee",
+        "chatSessionId": "sess_0af761bc-29cf-4ae3-91a7-3e2c86dc1c67",
+        "timestamp": 1786446068149
+      },
+      {
+        "executionId": "3fc37f00-1d3d-439b-907a-21eb564e58ee",
+        "chatSessionId": "sess_0af761bc-29cf-4ae3-91a7-3e2c86dc1c67",
+        "timestamp": 1786446200044
       }
     ]
   }
