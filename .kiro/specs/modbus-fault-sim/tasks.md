@@ -150,7 +150,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Return PDU: `03 | byteCount | values...` or exception
     - _Requirements: 1.1, 1.2, 6.2_
 
-  - [ ]* 7.2 Write property tests for FC 03 (Properties 4, 5, 14)
+  - [x] 7.2 Write property tests for FC 03 (Properties 4, 5, 14)
     - **Property 4: FC 03 Response Structure**
     - **Property 5: FC 03 Quantity Validation**
     - **Property 14: Multi-Register Range Validation**
