@@ -139,11 +139,11 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Test write/read round trips, float32 encoding via store, freeze/unfreeze behavior
     - **Validates: Requirements 2.2, 10.1, 10.2, 13.1, 13.2, 13.3, 13.4**
 
-- [ ] 6. Checkpoint - Ensure all tests pass
+- [x] 6. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 7. Function code handlers and router
-  - [ ] 7.1 Implement FC 03 handler
+  - [x] 7.1 Implement FC 03 handler
     - Create `src/protocol/handlers/fc03.ts`
     - Implement `handleReadHoldingRegisters(request, store): RouteResult`
     - Validate quantity in [1, 125], validate address range, read values from store
