@@ -158,7 +158,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify correct response structure, exception on invalid quantity, exception on out-of-range addresses
     - **Validates: Requirements 1.1, 1.2, 6.2**
 
-  - [ ] 7.3 Implement FC 06 handler
+  - [x] 7.3 Implement FC 06 handler
     - Create `src/protocol/handlers/fc06.ts`
     - Implement `handleWriteSingleRegister(request, store): RouteResult`
     - Validate address exists and is not float32, write value, echo request PDU
