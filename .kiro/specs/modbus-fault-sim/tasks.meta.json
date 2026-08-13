@@ -359,6 +359,16 @@
         "executionId": "08b09aa4-4afc-46b7-8c54-86fb3d041af4",
         "chatSessionId": "sess_e01cc3bd-5a3a-430c-8073-9093866a3afb",
         "timestamp": 1786201658001
+      },
+      {
+        "executionId": "fd5f25bb-c8bf-4315-a713-3c5c2387e6ed",
+        "chatSessionId": "sess_bd17995c-1a6e-4d1f-88ed-2ebbd03e1c5a",
+        "timestamp": 1786619229897
+      },
+      {
+        "executionId": "fd5f25bb-c8bf-4315-a713-3c5c2387e6ed",
+        "chatSessionId": "sess_bd17995c-1a6e-4d1f-88ed-2ebbd03e1c5a",
+        "timestamp": 1786619356276
       }
     ],
     "7.7 Implement router": [
@@ -632,6 +642,13 @@
         "executionId": "31ad9023-5825-4701-ba41-c9410638bf1d",
         "chatSessionId": "sess_b2f141e3-4245-4565-b9e8-0fd3ce505377",
         "timestamp": 1786619121165
+      }
+    ],
+    "7.6 Write property tests for FC 16 (Properties 9, 10, 11)": [
+      {
+        "executionId": "5c0e0c80-9be4-4785-8826-8aae1eab435d",
+        "chatSessionId": "sess_a3964fe1-6ea4-4a54-8691-26e986bcf67c",
+        "timestamp": 1786619195168
       }
     ]
   }
