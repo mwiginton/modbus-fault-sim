@@ -164,7 +164,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Validate address exists and is not float32, write value, echo request PDU
     - _Requirements: 2.1, 2.2, 2.3, 6.3_
 
-  - [ ]* 7.4 Write property tests for FC 06 (Properties 6, 8, 13)
+  - [x] 7.4 Write property tests for FC 06 (Properties 6, 8, 13)
     - **Property 6: FC 06 Echo Response**
     - **Property 8: FC 06 Float32 Rejection**
     - **Property 13: Invalid Address Exception**
