@@ -178,7 +178,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Validate quantity in [1, 123], validate byte count = 2 × quantity, validate address range, write values
     - _Requirements: 3.1, 3.2, 3.3, 6.2_
 
-  - [ ] 7.6 Write property tests for FC 16 (Properties 9, 10, 11)
+  - [x] 7.6 Write property tests for FC 16 (Properties 9, 10, 11)
     - **Property 9: FC 16 Response Structure**
     - **Property 10: FC 16 Quantity Validation**
     - **Property 11: FC 16 Byte Count Consistency**
