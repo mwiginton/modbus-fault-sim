@@ -199,7 +199,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify unknown unit ID produces discard, unsupported FC produces 9-byte exception with code 01
     - **Validates: Requirements 1.3, 5.1**
 
-- [ ] 8. Checkpoint - Ensure all tests pass
+- [x] 8. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 9. Fault injection layer
