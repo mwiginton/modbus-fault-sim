@@ -142,7 +142,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
 - [x] 6. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 7. Function code handlers and router
+- [x] 7. Function code handlers and router
   - [x] 7.1 Implement FC 03 handler
     - Create `src/protocol/handlers/fc03.ts`
     - Implement `handleReadHoldingRegisters(request, store): RouteResult`
@@ -186,7 +186,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify correct response structure, quantity validation, and byte count consistency check
     - **Validates: Requirements 3.1, 3.2, 3.3**
 
-  - [ ] 7.7 Implement router
+  - [x] 7.7 Implement router
     - Create `src/protocol/router.ts`
     - Implement `route(request, devices): RouteResult`
     - Handle: unit ID not found → discard, protocol ID ≠ 0x0000 → discard, PDU < 1 byte → close, unsupported FC → exception 01, valid → dispatch to handler
