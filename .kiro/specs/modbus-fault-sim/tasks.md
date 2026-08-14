@@ -192,7 +192,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Handle: unit ID not found → discard, protocol ID ≠ 0x0000 → discard, PDU < 1 byte → close, unsupported FC → exception 01, valid → dispatch to handler
     - _Requirements: 1.3, 4.5, 5.1, 5.2_
 
-  - [ ]* 7.8 Write property tests for router (Properties 3, 12)
+  - [x] 7.8 Write property tests for router (Properties 3, 12)
     - **Property 3: Unknown Unit ID Discards**
     - **Property 12: Unsupported Function Code Exception**
     - Create `tests/protocol/router.test.ts`
