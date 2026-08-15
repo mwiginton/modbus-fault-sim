@@ -548,6 +548,16 @@
         "executionId": "c1c3a19d-7603-4fd7-9664-a67d31460543",
         "chatSessionId": "sess_eedc7035-24a6-43c6-867b-44448ed84db0",
         "timestamp": 1786804070198
+      },
+      {
+        "executionId": "dccb905b-1d07-44d2-a25a-9632c5e5993c",
+        "chatSessionId": "sess_d5434583-90a4-4842-859a-a22aa490cbaa",
+        "timestamp": 1786809987426
+      },
+      {
+        "executionId": "dccb905b-1d07-44d2-a25a-9632c5e5993c",
+        "chatSessionId": "sess_d5434583-90a4-4842-859a-a22aa490cbaa",
+        "timestamp": 1786810475018
       }
     ],
     "13.1 Create example YAML configurations": [
@@ -775,6 +785,13 @@
         "executionId": "851706ff-28f7-4649-993e-cf42d5caffe8",
         "chatSessionId": "sess_e7aadc86-028f-4371-8b1b-fd15ae63dc2d",
         "timestamp": 1786804858328
+      }
+    ],
+    "12. CLI entrypoint and wiring": [
+      {
+        "executionId": "dccb905b-1d07-44d2-a25a-9632c5e5993c",
+        "chatSessionId": "sess_d5434583-90a4-4842-859a-a22aa490cbaa",
+        "timestamp": 1786810475106
       }
     ]
   }

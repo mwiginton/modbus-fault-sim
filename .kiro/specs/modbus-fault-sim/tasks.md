@@ -256,8 +256,8 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify new connections accepted within 100ms
     - **Validates: Requirements 15.1, 15.2**
 
-- [ ] 12. CLI entrypoint and wiring
-  - [ ] 12.1 Implement CLI entrypoint
+- [x] 12. CLI entrypoint and wiring
+  - [x] 12.1 Implement CLI entrypoint
     - Create `src/cli.ts`
     - Parse command-line arguments (config file path)
     - Load and validate config, start TCP server, print ready message, begin scenario
