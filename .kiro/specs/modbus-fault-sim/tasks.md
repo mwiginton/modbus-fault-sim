@@ -236,7 +236,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 11. Server and connection handling
-  - [ ] 11.1 Implement TCP server
+  - [x] 11.1 Implement TCP server
     - Create `src/server/tcp-server.ts`
     - Implement `TcpServer` class wrapping `net.Server`
     - Support `start()`, `stop()`, `closeAllConnections()`

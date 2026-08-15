@@ -1,0 +1,51 @@
+listen:
+  host: 127.0.0.1
+  port: 5020
+
+addressBase: documentation
+wordOrder: big_endian
+
+devices:
+  - unitId: 1
+    name: pump-station-a
+    registers:
+      - address: 40001
+        name: flow_rate
+        type: float32
+        initialValue: 52.5
+        behavior:
+          type: sine
+          min: 20.0
+          max: 85.0
+          periodMs: 60000
+      - address: 40003
+        name: motor_temp
+        type: uint16
+        initialValue: 60
+        behavior:
+          type: ramp
+          start: 60
+          end: 95
+          durationMs: 300000
+      - address: 40004
+        name: valve_position
+        type: uint16
+        initialValue: 120
+        behavior:
+          type: constant
+          value: 120
+
+  - unitId: 2
+    name: tank-level-b
+    registers:
+      - address: 40001
+        name: level_pct
+        type: uint16
+        initialValue: 0
+        behavior:
+          type: ramp
+          start: 0
+          end: 100
+          durationMs: 120000
+    
+scenario: []
