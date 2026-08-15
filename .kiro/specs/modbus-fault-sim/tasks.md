@@ -202,7 +202,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
 - [x] 8. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 9. Fault injection layer
+- [x] 9. Fault injection layer
   - [x] 9.1 Implement fault engine
     - Create `src/faults/fault-engine.ts`
     - Implement `FaultEngine` class with `activate`, `tick`, `applyFaults`, `isFrozen`
@@ -217,7 +217,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Verify delay is applied correctly via injectable clock, and fault deactivates after duration
     - **Validates: Requirements 14.1, 14.2**
 
-  - [ ] 9.3 Implement scenario scheduler
+  - [x] 9.3 Implement scenario scheduler
     - Create `src/faults/scenario-scheduler.ts`
     - Implement `ScenarioScheduler` class with `start()` and `stop()`
     - Sort entries by offset (stable sort preserving declaration order for ties)
