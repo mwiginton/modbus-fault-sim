@@ -203,7 +203,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 9. Fault injection layer
-  - [ ] 9.1 Implement fault engine
+  - [x] 9.1 Implement fault engine
     - Create `src/faults/fault-engine.ts`
     - Implement `FaultEngine` class with `activate`, `tick`, `applyFaults`, `isFrozen`
     - Handle freeze_register (delegate to register store), slow_response (delay via setTimeout), connection_drop (close sockets)
