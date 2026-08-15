@@ -235,7 +235,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
 - [ ] 10. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 11. Server and connection handling
+- [x] 11. Server and connection handling
   - [x] 11.1 Implement TCP server
     - Create `src/server/tcp-server.ts`
     - Implement `TcpServer` class wrapping `net.Server`
@@ -243,7 +243,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Accept new connections within 100ms after closing existing ones (for connection_drop fault)
     - _Requirements: 15.1, 15.2, 17.1, 17.5_
 
-  - [ ] 11.2 Implement connection handler
+  - [x] 11.2 Implement connection handler
     - Create `src/server/connection-handler.ts`
     - Implement `handleConnection(socket, devices, faultEngine)`
     - Feed data to FrameParser, route frames, apply faults, send responses via frame-builder
