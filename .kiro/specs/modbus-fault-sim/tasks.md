@@ -232,7 +232,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Use fake timers for deterministic testing
     - **Validates: Requirements 16.2**
 
-- [ ] 10. Checkpoint - Ensure all tests pass
+- [x] 10. Checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 - [x] 11. Server and connection handling
