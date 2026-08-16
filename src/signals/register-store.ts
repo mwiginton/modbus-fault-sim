@@ -36,6 +36,8 @@ interface RegisterSlot {
   behavior: BehaviorConfig | null;
   frozen: boolean;
   frozenValue: number | null;
+  /** When true, currentValue takes priority over behavior (set by client writes). */
+  pinned: boolean;
 }
 
 /**
@@ -67,6 +69,7 @@ export class RegisterStore {
         behavior: desc.behavior ?? null,
         frozen: false,
         frozenValue: null,
+        pinned: false,
       };
 
       this.nameMap.set(desc.name, slot);
@@ -130,6 +133,9 @@ export class RegisterStore {
     }
 
     slot.currentValue = value & 0xFFFF;
+    if (slot.behavior) {
+      slot.pinned = true;
+    }
     return undefined;
   }
 
@@ -163,6 +169,9 @@ export class RegisterStore {
         // Writing at the base address with at least 2 values: decode as IEEE 754 (Req 10.3)
         if (addr === slot.baseAddress && i + 1 < quantity) {
           slot.currentValue = wordsToFloat32(values[i], values[i + 1]);
+          if (slot.behavior) {
+            slot.pinned = true;
+          }
           i += 2;
         } else {
           // Partial write to a float32 word — just advance
@@ -171,6 +180,9 @@ export class RegisterStore {
         }
       } else {
         slot.currentValue = values[i] & 0xFFFF;
+        if (slot.behavior) {
+          slot.pinned = true;
+        }
         i += 1;
       }
     }
@@ -199,11 +211,12 @@ export class RegisterStore {
 
     slot.frozen = false;
     slot.frozenValue = null;
+    slot.pinned = false;
   }
 
   /**
    * Get the current effective value for a register slot.
-   * Handles frozen state, behaviors, and raw stored values.
+   * Handles frozen state, pinned (client-written) state, behaviors, and raw stored values.
    */
   private getSlotValue(slot: RegisterSlot): number {
     // If frozen, return frozen value (Req 13.1)
@@ -211,7 +224,12 @@ export class RegisterStore {
       return slot.frozenValue;
     }
 
-    // If has behavior and not frozen, compute value
+    // If pinned by a client write, return stored value instead of behavior
+    if (slot.pinned) {
+      return slot.currentValue;
+    }
+
+    // If has behavior and not frozen/pinned, compute value
     if (slot.behavior) {
       const raw = computeBehaviorValue(slot.behavior, this.clock());
       // uint16 registers with behaviors: round the computed value (Req 11.4)

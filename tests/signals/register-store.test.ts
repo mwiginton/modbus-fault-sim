@@ -325,6 +325,140 @@ describe('RegisterStore', () => {
       expect(store.readRegisters(0, 1)).toEqual([777]);
     });
   });
+
+  describe('write pins register (overrides behavior)', () => {
+    it('FC 06 write to a register with behavior pins it so subsequent reads return written value', () => {
+      let time = 0;
+      const regs: RegisterDescriptor[] = [
+        {
+          name: 'sensor',
+          address: 0,
+          type: 'uint16',
+          initialValue: 0,
+          behavior: { type: 'sine', params: { min: 0, max: 100, periodMs: 1000 } },
+        },
+      ];
+      const store = new RegisterStore(regs, () => time);
+
+      // Before write, behavior is active
+      time = 250; // sine at T=250 => max=100
+      expect(store.readRegisters(0, 1)).toEqual([100]);
+
+      // Write a specific value
+      const err = store.writeSingle(0, 42);
+      expect(err).toBeUndefined();
+
+      // Read should return the written value, not the behavior
+      time = 500; // sine at T=500 would be mid=50, but we wrote 42
+      expect(store.readRegisters(0, 1)).toEqual([42]);
+
+      // Still pinned at a later time
+      time = 750;
+      expect(store.readRegisters(0, 1)).toEqual([42]);
+    });
+
+    it('FC 16 write to a register with behavior pins it so subsequent reads return written value', () => {
+      let time = 0;
+      const regs: RegisterDescriptor[] = [
+        {
+          name: 'sensor',
+          address: 0,
+          type: 'uint16',
+          initialValue: 0,
+          behavior: { type: 'ramp', params: { start: 0, end: 200, durationMs: 1000 } },
+        },
+        {
+          name: 'other',
+          address: 1,
+          type: 'uint16',
+          initialValue: 0,
+          behavior: { type: 'ramp', params: { start: 0, end: 100, durationMs: 1000 } },
+        },
+      ];
+      const store = new RegisterStore(regs, () => time);
+
+      time = 500;
+      const err = store.writeMultiple(0, [120, 55]);
+      expect(err).toBeUndefined();
+
+      // Both should return written values, not behavior
+      time = 800;
+      expect(store.readRegisters(0, 2)).toEqual([120, 55]);
+    });
+
+    it('FC 16 write to a float32 register with behavior pins it', () => {
+      let time = 0;
+      const regs: RegisterDescriptor[] = [
+        {
+          name: 'pressure',
+          address: 0,
+          type: 'float32',
+          initialValue: 0,
+          behavior: { type: 'constant', params: { value: 99.9 } },
+        },
+      ];
+      const store = new RegisterStore(regs, () => time);
+
+      const [hi, lo] = float32ToWords(3.14);
+      const err = store.writeMultiple(0, [hi, lo]);
+      expect(err).toBeUndefined();
+
+      time = 1000;
+      const result = store.readRegisters(0, 2) as number[];
+      const decoded = wordsToFloat32(result[0], result[1]);
+      expect(decoded).toBeCloseTo(3.14, 2);
+    });
+
+    it('unfreeze clears pinned state so behavior resumes', () => {
+      let time = 0;
+      const regs: RegisterDescriptor[] = [
+        {
+          name: 'sensor',
+          address: 0,
+          type: 'uint16',
+          initialValue: 0,
+          behavior: { type: 'ramp', params: { start: 0, end: 100, durationMs: 1000 } },
+        },
+      ];
+      const store = new RegisterStore(regs, () => time);
+
+      // Write to pin
+      store.writeSingle(0, 42);
+      expect(store.readRegisters(0, 1)).toEqual([42]);
+
+      // Freeze then unfreeze should clear the pin and restore behavior
+      store.freeze('sensor');
+      store.unfreeze('sensor');
+
+      time = 500;
+      // ramp at T=500 => trunc(50) = 50
+      expect(store.readRegisters(0, 1)).toEqual([50]);
+    });
+
+    it('frozen state takes priority over pinned state', () => {
+      let time = 0;
+      const regs: RegisterDescriptor[] = [
+        {
+          name: 'sensor',
+          address: 0,
+          type: 'uint16',
+          initialValue: 0,
+          behavior: { type: 'ramp', params: { start: 0, end: 100, durationMs: 1000 } },
+        },
+      ];
+      const store = new RegisterStore(regs, () => time);
+
+      // Read behavior value at T=200
+      time = 200;
+      store.freeze('sensor');
+      const frozenVal = store.readRegisters(0, 1) as number[];
+
+      // Write while frozen — should be silently ignored
+      store.writeSingle(0, 999);
+      time = 800;
+      expect(store.readRegisters(0, 1)).toEqual(frozenVal);
+    });
+  });
 });
 
 
