@@ -1,0 +1,2 @@
+# Pinned below 3.8 because the slave= keyword was renamed in later releases.
+pymodbus>=3.6,<3.8
