@@ -342,11 +342,6 @@ Kiro's **Analyze Requirements** step was run before approving the requirements, 
 
 The commit history shows spec artifacts committed separately from and prior to the implementation they describe.
 
-<!-- TODO: fill these in from your build notes. This section is worth real marks, and specifics beat generalities. -->
-<!-- - What Analyze Requirements actually caught -->
-<!-- - Where the generated task plan needed reordering, and why -->
-<!-- - What you wrote by hand rather than generating, and the reasoning -->
-<!-- - Anything surprising about the workflow, including what went wrong -->
 
 ---
 
@@ -357,6 +352,126 @@ The commit history shows spec artifacts committed separately from and prior to t
 - Register types are `uint16` and `float32`. Signed 16-bit registers are not yet supported.
 - Float32 word order is big-endian only. Word-swapped devices exist in the field and are not currently configurable.
 - Faults fire on a declared timeline. There is no runtime API for triggering them manually.
+
+---
+
+## Real-world deployment
+
+The Python verification scripts exist for testing locally. In a production setting, this tool slots into several workflows where teams need repeatable, on-demand Modbus failure scenarios.
+
+### CI/CD gate for SCADA/DCS client software
+
+Run the simulator as a test fixture in your pipeline. A job starts `modbus-fault-sim` with a scenario YAML that covers the fault modes your client must handle, then runs your client's integration test suite against it. If the client hangs, crashes, or logs stale data without raising an alert, the pipeline fails. This is the highest-value use case: every merge request proves the error-handling paths still work, without touching real hardware.
+
+```yaml
+# Example GitHub Actions step
+- name: Modbus fault integration test
+  run: |
+    node dist/cli.js test-fixtures/ci-scenario.yaml &
+    SERVER_PID=$!
+    sleep 2
+    python tests/integration/poll_and_assert.py
+    kill $SERVER_PID
+```
+
+### Hardware-in-the-loop test benches
+
+Industrial teams often maintain a bench with a mix of real PLCs and simulators on the same network. Configure `modbus-fault-sim` to impersonate specific devices (matching their unit IDs and register maps) and inject faults that are difficult or dangerous to produce on the real equipment — sensor freeze, intermittent network congestion, or a controller that stops responding mid-poll. The test bench exercises the full acquisition stack (OPC-UA gateway, historian, alarm engine) under failure conditions without risking equipment.
+
+### Operator and developer training
+
+New team members can connect standard Modbus tools (QModMaster, ModRSsim2, or a custom HMI) to the simulator running a scripted fault timeline. Watching a register freeze without an error, or seeing the poller hang because it lacks a timeout, builds intuition about failure modes that text documentation alone cannot provide.
+
+### Typical production configuration
+
+A real deployment might model an entire process unit — pumps, heat exchangers, VFDs — as multiple devices with register maps that mirror the actual hardware. The YAML below sketches what this looks like:
+
+```yaml
+listen:
+  host: 0.0.0.0    # bind to all interfaces so networked clients can reach it
+  port: 502         # standard Modbus port (requires elevated privileges)
+
+devices:
+  - name: feed-pump-101
+    unitId: 1
+    addressBase: documentation
+    registers:
+      - name: discharge_pressure
+        address: 40001
+        type: float32
+        initialValue: 145.2
+        behavior: { type: sine, min: 130.0, max: 160.0, periodMs: 30000 }
+      - name: motor_current
+        address: 40003
+        type: float32
+        initialValue: 12.8
+        behavior: { type: ramp, start: 12.0, end: 14.5, durationMs: 60000 }
+      - name: status_word
+        address: 40005
+        type: uint16
+        initialValue: 1
+
+  - name: heat-exchanger-201
+    unitId: 2
+    addressBase: documentation
+    registers:
+      - name: inlet_temp
+        address: 40001
+        type: float32
+        initialValue: 72.3
+        behavior: { type: sine, min: 68.0, max: 78.0, periodMs: 45000 }
+      - name: outlet_temp
+        address: 40003
+        type: float32
+        initialValue: 55.1
+        behavior: { type: sine, min: 50.0, max: 60.0, periodMs: 45000 }
+
+scenario:
+  # Simulate a pressure transmitter freeze after 5 minutes
+  - offsetMs: 300000
+    fault: freeze_register
+    target: feed-pump-101.discharge_pressure
+
+  # Network congestion on the heat exchanger after 10 minutes
+  - offsetMs: 600000
+    fault: slow_response
+    target: heat-exchanger-201
+    delayMs: 3500
+    durationMs: 120000
+
+  # Controller reboot at 15 minutes
+  - offsetMs: 900000
+    fault: connection_drop
+    target: feed-pump-101
+```
+
+Key differences from the demo examples:
+
+- **Bind to `0.0.0.0`** so clients on other machines (a historian, an OPC gateway, or a test bench) can connect over the network.
+- **Use port 502** if the environment allows it, since that is what production clients expect.
+- **Longer timelines** — real scenarios model shifts or maintenance windows, not 90-second demos.
+- **Register maps mirror real hardware** — addresses, types, and unit IDs match the vendor documentation so the client under test needs zero configuration changes to switch between the simulator and the real device.
+
+### Running as a service
+
+For long-running test environments, wrap the simulator in a systemd unit (Linux) or a Windows service:
+
+```ini
+# /etc/systemd/system/modbus-fault-sim.service
+[Unit]
+Description=Modbus Fault Simulator
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/modbus-fault-sim/dist/cli.js /etc/modbus-fault-sim/scenario.yaml
+Restart=on-failure
+User=modbus-sim
+
+[Install]
+WantedBy=multi-user.target
+```
+
+This keeps the simulator available around the clock for automated test suites or always-on training environments without manual intervention.
 
 ---
 
