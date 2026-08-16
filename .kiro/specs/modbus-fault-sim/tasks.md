@@ -271,7 +271,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - **Validates: Requirements 17.2, 17.3, 17.4**
 
 - [ ] 13. Example configurations and end-to-end verification
-  - [ ] 13.1 Create example YAML configurations
+  - [x] 13.1 Create example YAML configurations
     - Create `examples/basic.yaml` — simple single-device config with a few registers
     - Create `examples/fault-scenario.yaml` — multi-device config with freeze, slow response, and connection drop faults on a timeline
     - Demonstrate documentation addressing, float32 registers, sine and ramp behaviors
