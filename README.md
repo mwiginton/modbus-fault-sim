@@ -10,6 +10,8 @@ Built for the Ready, Spec, Ship hackathon using [Kiro](https://kiro.dev). See [H
 
 Requires Node.js 20 or later. No other runtime is needed.
 
+You'll first run a healthy Modbus server with no faults using `examples/basic.yaml` to confirm correct protocol behavior, then run the fault scenario (`examples/fault-scenario.yaml`) to see how the simulator models problematic devices.
+
 ```bash
 git clone https://github.com/mwiginton/modbus-fault-sim.git
 cd modbus-fault-sim
@@ -26,6 +28,8 @@ node dist/cli.js examples/basic.yaml
 This starts a Modbus TCP server on `127.0.0.1:5020` with two virtual devices (unit IDs 1 and 2). You'll see startup output confirming the listener is ready. **Leave this running** — the next step connects to it from a separate terminal.
 
 ### 2. Verify with pymodbus (separate terminal)
+
+The Python scripts in the `clients/` directory simulate a Modbus client connecting to the server. They exist solely for testing and verification — they are not part of the simulator itself.
 
 Open a second terminal window, then:
 
