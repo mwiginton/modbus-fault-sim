@@ -283,7 +283,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Test scenario execution: verify faults activate at correct times with correct log output
     - **Validates: Requirements 1.1, 4.1, 16.1, 16.3, 17.1**
 
-- [ ] 14. Final checkpoint - Ensure all tests pass
+- [x] 14. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
