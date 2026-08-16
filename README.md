@@ -15,22 +15,66 @@ git clone https://github.com/mwiginton/modbus-fault-sim.git
 cd modbus-fault-sim
 npm install
 npm run build
+```
+
+### 1. Run the basic simulator (no faults)
+
+```bash
 node dist/cli.js examples/basic.yaml
 ```
 
-The simulator listens on `127.0.0.1:5020` and serves two virtual devices. Point any Modbus TCP client at it.
+This starts a Modbus TCP server on `127.0.0.1:5020` with two virtual devices (unit IDs 1 and 2). You'll see startup output confirming the listener is ready. Press Ctrl+C to stop.
 
-To see fault injection, run the scenario configuration instead:
+### 2. Verify with pymodbus (separate terminal)
+
+```bash
+python -m pip install -r clients/requirements.txt
+python clients/verify.py
+```
+
+This exercises FC 03 reads (including float32 spanning two registers), FC 06/FC 16 writes with read-back, exception responses, a second device, and the silent discard of an unconfigured unit ID. It exits 0 on success and prints PASS/FAIL for each check.
+
+The last check intentionally times out (a few seconds of silence) because the Modbus spec says unrecognized unit IDs get no response.
+
+### 3. Watch fault injection in action
+
+Stop the first server (Ctrl+C), then start the fault scenario:
 
 ```bash
 node dist/cli.js examples/fault-scenario.yaml
 ```
 
-Faults fire on the timeline declared in the file and each activation is logged to stdout.
+In another terminal:
 
-Press Ctrl+C to stop.
+```bash
+python clients/watch_faults.py
+```
 
-<!-- TODO: paste real captured startup output here, inside a code block -->
+This polls once per second and prints what the client observes. You'll see:
+
+- At ~10s: `discharge_pressure` freezes (reads succeed but value stops changing)
+- At ~25s: `vibration_level` reads slow down (may time out with the 2s client timeout)
+- At ~45s: connections to the heat exchanger drop (socket errors)
+- At ~60s: `inlet_temp` freezes
+- At ~90s: `rpm` reads slow down
+
+Each fault activation and deactivation is also logged to stdout on the server side.
+
+### 4. Run the unit tests
+
+```bash
+npm test
+```
+
+The test suite uses property-based testing with fast-check, generating randomized inputs on each run.
+
+### What to look for
+
+- `verify.py` proves the wire format is correct against a third-party implementation (pymodbus), not just self-consistent.
+- `watch_faults.py` demonstrates the core value: you can observe how a client behaves when a register freezes (no error, just stale data), when responses slow down (timeout errors), and when connections drop (socket errors).
+- The fault timeline in `examples/fault-scenario.yaml` is human-readable and fires exactly on schedule.
+
+No Python is required to run the simulator itself — the pymodbus scripts are just for verification. Any Modbus TCP client (ModRSsim2, QModMaster, or a custom one) can connect to `127.0.0.1:5020`.
 
 ---
 
