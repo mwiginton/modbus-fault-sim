@@ -238,56 +238,6 @@ Writes override a register's behavior for that register.
 
 ---
 
-## Verifying against a third-party client
-
-The simulator is tested against [pymodbus](https://github.com/pymodbus-dev/pymodbus), an independent Modbus implementation, to confirm the wire format is correct rather than merely self-consistent.
-
-These scripts are **optional**. The simulator itself has no Python dependency.
-
-### Setup
-
-```bash
-python -m pip install -r clients/requirements.txt
-```
-
-On Windows, use `py -m pip install -r clients/requirements.txt` if `python` is not on your PATH.
-
-### verify.py
-
-Exercises every supported function code and checks the responses.
-
-```bash
-# Terminal 1
-node dist/cli.js examples/basic.yaml
-
-# Terminal 2
-python clients/verify.py
-```
-
-Covers FC 03 reads including a float32 spanning two registers, FC 06 and FC 16 writes with read-back, exception responses for out-of-range addresses and float32 writes, reads against a second device, and the silent discard of an unconfigured unit ID. Exits 0 if every check passes.
-
-The final check waits for a client timeout, because an unconfigured unit ID correctly produces no response at all. A pause of a few seconds there is expected.
-
-<!-- TODO: paste real captured verify.py output here -->
-
-### watch_faults.py
-
-Polls once per second and prints what a client sees while faults fire.
-
-```bash
-# Terminal 1
-node dist/cli.js examples/fault-scenario.yaml
-
-# Terminal 2
-python clients/watch_faults.py
-```
-
-The client timeout is set to 2 seconds so that `slow_response` surfaces as an error rather than a long pause.
-
-<!-- TODO: paste real captured watch_faults.py output here, showing flow_rate frozen while motor_temp continues -->
-
----
-
 ## Development
 
 ```bash
