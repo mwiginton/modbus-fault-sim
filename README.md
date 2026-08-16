@@ -23,9 +23,11 @@ npm run build
 node dist/cli.js examples/basic.yaml
 ```
 
-This starts a Modbus TCP server on `127.0.0.1:5020` with two virtual devices (unit IDs 1 and 2). You'll see startup output confirming the listener is ready. Press Ctrl+C to stop.
+This starts a Modbus TCP server on `127.0.0.1:5020` with two virtual devices (unit IDs 1 and 2). You'll see startup output confirming the listener is ready. **Leave this running** — the next step connects to it from a separate terminal.
 
 ### 2. Verify with pymodbus (separate terminal)
+
+Open a second terminal window, then:
 
 ```bash
 python -m pip install -r clients/requirements.txt
