@@ -102,8 +102,11 @@ function buildScenarioEntries(
         }
       }
     } else {
-      // Target is a device name → unitId as string
-      const unitId = deviceNameToUnitId.get(entry.target);
+      // Target may be "deviceName" or "deviceName.registerName"
+      // In both cases, resolve to unitId as string for FaultEngine
+      const dotIndex = entry.target.indexOf('.');
+      const deviceName = dotIndex !== -1 ? entry.target.substring(0, dotIndex) : entry.target;
+      const unitId = deviceNameToUnitId.get(deviceName);
       if (unitId !== undefined) {
         target = String(unitId);
       }

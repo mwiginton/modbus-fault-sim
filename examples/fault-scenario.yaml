@@ -83,11 +83,11 @@ scenario:
     target: compressor-unit.discharge_pressure
     durationMs: 30000
 
-  # At 25s, introduce 800ms delay on vibration reads
+  # At 25s, introduce 2500ms delay on vibration reads (exceeds client 2s timeout)
   - offsetMs: 25000
     fault: slow_response
     target: compressor-unit.vibration_level
-    delayMs: 800
+    delayMs: 2500
     durationMs: 20000
 
   # At 45s, drop all connections to the heat exchanger
@@ -102,9 +102,9 @@ scenario:
     target: heat-exchanger.inlet_temp
     durationMs: 15000
 
-  # At 90s, slow response on compressor RPM reads
+  # At 90s, introduce 2500ms delay on RPM reads (exceeds client 2s timeout)
   - offsetMs: 90000
     fault: slow_response
     target: compressor-unit.rpm
-    delayMs: 1200
+    delayMs: 2500
     durationMs: 25000
