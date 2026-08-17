@@ -31,12 +31,30 @@ This starts a Modbus TCP server on `127.0.0.1:5020` with two virtual devices (un
 
 The Python scripts in the `clients/` directory simulate a Modbus client connecting to the server. They exist solely for testing and verification — they are not part of the simulator itself.
 
-Open a second terminal window, then:
+Open a second terminal window, then install the dependencies and run the verification script.
+
+**Windows:**
 
 ```bash
 python -m pip install -r clients/requirements.txt
 python clients/verify.py
 ```
+
+**macOS / Linux:**
+
+On macOS (and some Linux distributions), the system Python is externally managed and won't allow global pip installs. Use a virtual environment:
+
+```bash
+python3 -m venv clients/.venv
+source clients/.venv/bin/activate
+python3 -m pip install -r clients/requirements.txt
+python3 clients/verify.py
+```
+
+> **Note:** If you open a new terminal later, re-activate the virtual environment before running client scripts:
+> ```bash
+> source clients/.venv/bin/activate
+> ```
 
 This exercises FC 03 reads (including float32 spanning two registers), FC 06/FC 16 writes with read-back, exception responses, a second device, and the silent discard of an unconfigured unit ID. It exits 0 on success and prints PASS/FAIL for each check.
 
@@ -50,10 +68,19 @@ Stop the first server (Ctrl+C), then start the fault scenario:
 node dist/cli.js examples/fault-scenario.yaml
 ```
 
-In another terminal:
+In another terminal (activate the virtual environment first on macOS/Linux):
+
+**Windows:**
 
 ```bash
 python clients/watch_faults.py
+```
+
+**macOS / Linux:**
+
+```bash
+source clients/.venv/bin/activate
+python3 clients/watch_faults.py
 ```
 
 This polls once per second and prints what the client observes. You'll see:
