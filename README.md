@@ -25,11 +25,11 @@ npm run build
 node dist/cli.js examples/basic.yaml
 ```
 
-This starts a Modbus TCP server on `127.0.0.1:5020` with two virtual devices (unit IDs 1 and 2). You'll see startup output confirming the listener is ready. **Leave this running** — the next step connects to it from a separate terminal.
+This starts a Modbus TCP server on `127.0.0.1:5020` with two virtual devices (unit IDs 1 and 2). You'll see startup output confirming the listener is ready. **Leave this running** because the next step connects to it from a separate terminal.
 
 ### 2. Verify with pymodbus (separate terminal)
 
-The Python scripts in the `clients/` directory simulate a Modbus client connecting to the server. They exist solely for testing and verification — they are not part of the simulator itself.
+The Python scripts in `clients/` act as a Modbus client that connects to the server. They're only there for testing and verification, not part of the simulator itself.
 
 Open a second terminal window, then install the dependencies and run the verification script.
 
@@ -51,7 +51,7 @@ python3 -m pip install -r clients/requirements.txt
 python3 clients/verify.py
 ```
 
-> **Note:** If you open a new terminal later, re-activate the virtual environment before running client scripts:
+> **Note:** If you open a new terminal later, reactivate the virtual environment before running client scripts:
 > ```bash
 > source clients/.venv/bin/activate
 > ```
@@ -99,15 +99,15 @@ Each fault activation and deactivation is also logged to stdout on the server si
 npm test
 ```
 
-The test suite uses property-based testing with fast-check, generating randomized inputs on each run.
+The test suite uses property based testing with [fast-check](https://github.com/dubzzz/fast-check), generating randomized inputs on each run.
 
 ### What to look for
 
-- `verify.py` proves the wire format is correct against a third-party implementation (pymodbus), not just self-consistent.
+- `verify.py` proves the wire format is correct against a third party implementation (pymodbus), not just self-consistent.
 - `watch_faults.py` demonstrates the core value: you can observe how a client behaves when a register freezes (no error, just stale data), when responses slow down (timeout errors), and when connections drop (socket errors).
-- The fault timeline in `examples/fault-scenario.yaml` is human-readable and fires exactly on schedule.
+- The fault timeline in `examples/fault-scenario.yaml` is human readable and fires exactly on schedule.
 
-No Python is required to run the simulator itself — the pymodbus scripts are just for verification. Any Modbus TCP client (ModRSsim2, QModMaster, or a custom one) can connect to `127.0.0.1:5020`.
+You don't need Python to run the simulator in a real world scenario. The pymodbus scripts are just for verification. Any Modbus TCP client (ModRSsim2, QModMaster, or a custom one) can connect to `127.0.0.1:5020`.
 
 ---
 
@@ -132,7 +132,7 @@ The result is that error handling in this domain is frequently written but rarel
 
 ## Configuration reference
 
-A configuration file has three top-level sections.
+A configuration file has three top level sections.
 
 ### listen
 
@@ -172,7 +172,7 @@ devices:
 
 ### Addressing
 
-Modbus documentation conventionally numbers the first holding register 40001, while the wire address is `0x0000`. Setting `addressBase: documentation` on a device means addresses in the file are documentation-style and the simulator subtracts 40001 at load time.
+Modbus documentation conventionally numbers the first holding register 40001, while the wire address is `0x0000`. Setting `addressBase: documentation` on a device means addresses in the file are documentation style and the simulator subtracts 40001 at load time.
 
 With `addressBase: documentation`, a register declared at 40001 is read by clients at wire address 0.
 
@@ -274,7 +274,7 @@ npm run build
 npm run dev       # TypeScript watch mode
 ```
 
-The test suite is property-based, using [fast-check](https://github.com/dubzzz/fast-check). Rather than asserting specific input and output pairs, each test states a property that must hold across generated inputs: that the MBAP length field always equals the byte count following it, that float32 encoding round-trips bitwise, that a sine behavior's value at time T equals its value at T plus one period, that overlap detection reports exactly the number of overlapping register pairs present.
+The test suite is property based, using [fast-check](https://github.com/dubzzz/fast-check). Rather than asserting specific input and output pairs, each test states a property that must hold across generated inputs: that the MBAP length field always equals the byte count following it, that float32 encoding round trips bitwise, that a sine behavior's value at time T equals its value at T plus one period, that overlap detection reports exactly the number of overlapping register pairs present.
 
 This suits protocol work, where the failure cases are boundary conditions that hand-written examples tend to miss.
 
@@ -309,11 +309,11 @@ The protocol steering file removed the need to restate wire format constraints i
 
 ### Specs
 
-The project was built from a spec generated through Kiro's Requirements-First workflow, starting from sixteen requirements written in EARS notation before the build window opened. The three spec artifacts are in `.kiro/specs/`:
+The project was built from a spec generated through Kiro's Requirements First workflow, starting from sixteen requirements written in EARS notation before the build window opened. The three spec artifacts are in `.kiro/specs/`:
 
-- `requirements.md` — expanded EARS requirements with acceptance criteria
-- `design.md` — architecture, module boundaries, and the properties the test suite verifies
-- `tasks.md` — a dependency-ordered implementation plan, including an explicit task dependency graph
+- `requirements.md` - expanded EARS requirements with acceptance criteria
+- `design.md` - architecture, module boundaries, and the properties the test suite verifies
+- `tasks.md` - a dependency ordered implementation plan, including an explicit task dependency graph
 
 Kiro's **Analyze Requirements** step was run before approving the requirements, to surface gaps and ambiguities that had been missed in drafting.
 
@@ -326,15 +326,21 @@ The commit history shows spec artifacts committed separately from and prior to t
 
 - Modbus TCP only. Modbus RTU and serial transports are not implemented.
 - Function codes 03, 06, and 16 only. Coils, discrete inputs, and input registers are not implemented.
-- Register types are `uint16` and `float32`. Signed 16-bit registers are not yet supported.
-- Float32 word order is big-endian only. Word-swapped devices exist in the field and are not currently configurable.
+- Register types are `uint16` and `float32`. Signed 16 bit registers are not yet supported.
+- Float32 word order is big endian only. Word swapped devices exist in the field and are not currently configurable.
 - Faults fire on a declared timeline. There is no runtime API for triggering them manually.
 
 ---
 
 ## Real-world deployment
 
-In a production setting, configure the simulator with register maps and unit IDs that mirror your real hardware, bind to `0.0.0.0:502`, and run it as a CI test fixture, a hardware-in-the-loop stand-in, or a long-running training environment. A CI job can start the simulator with a fault scenario, run your client's integration suite against it, and fail the pipeline if the client hangs, crashes, or silently logs stale data. On a test bench, it impersonates specific devices so the full acquisition stack (OPC gateway, historian, alarm engine) can be exercised under failure conditions without risking real equipment.
+Set up your YAML to match the register maps and unit IDs of your real hardware, bind to `0.0.0.0:502`, and your clients won't know they're not talking to real hardware.
+
+A few places this fits naturally:
+
+- **CI pipelines.** Start the simulator with a fault scenario, run your client's integration tests against it, and fail the build if the client hangs, crashes, or quietly logs stale data. No hardware required, no physical network dependencies.
+- **Test benches.** Let it impersonate specific PLCs so your full acquisition stack (OPC gateway, historian, alarm engine) can run under failure conditions without risking real equipment.
+- **Training environments.** Leave it running so operators or new developers can see what freeze and timeout faults actually look like from the client side, before they encounter them at 3am on a live system.
 
 ---
 
