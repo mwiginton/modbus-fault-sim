@@ -5,6 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import fc from 'fast-check';
 import { FaultEngine } from '../../src/faults/fault-engine.js';
 import { RegisterStore } from '../../src/signals/register-store.js';
 import type { ActiveFault } from '../../src/server/connection-handler.js';
@@ -306,6 +307,145 @@ describe('FaultEngine', () => {
       clock.now = 6000;
       engine.tick(clock.now);
       expect(engine.isFrozen(1, 'pressure')).toBe(false);
+    });
+  });
+});
+
+
+// Feature: modbus-fault-sim, Property 31: Slow Response Delay Application
+// Feature: modbus-fault-sim, Property 32: Slow Response Duration Expiry
+describe('FaultEngine - Property-Based Tests', () => {
+  /**
+   * Property 31: Slow Response Delay Application
+   *
+   * For any request to a device with an active slow_response fault configured
+   * with delay D, the response SHALL be delayed by exactly D milliseconds.
+   *
+   * **Validates: Requirements 14.1**
+   */
+  describe('Property 31: Slow Response Delay Application', () => {
+    it('response is delayed by the configured delayMs', async () => {
+      await fc.assert(
+        fc.asyncProperty(
+          // delayMs between 1 and 60000 (valid range per Req 14.1)
+          fc.integer({ min: 1, max: 60000 }),
+          // unitId 1-247 (valid Modbus unit ID range)
+          fc.integer({ min: 1, max: 247 }),
+          // arbitrary PDU payload
+          fc.uint8Array({ minLength: 1, maxLength: 10 }),
+          async (delayMs, unitId, pduBytes) => {
+            vi.useFakeTimers();
+            try {
+              const clockObj = { now: 0 };
+              const getClock = () => clockObj.now;
+              const localStore = new RegisterStore(
+                [{ name: 'reg0', address: 0, type: 'uint16', initialValue: 0 }],
+                getClock,
+              );
+              const localStores = new Map<number, RegisterStore>([[unitId, localStore]]);
+              const localEngine = new FaultEngine(localStores, getClock);
+
+              const fault: ActiveFault = {
+                type: 'slow_response',
+                target: String(unitId),
+                activatedAt: 0,
+                duration: 120000, // long duration so it stays active
+                params: { delayMs },
+              };
+              localEngine.activate(fault);
+
+              const pdu = Buffer.from(pduBytes);
+              const result: RouteResult = { type: 'response', pdu };
+              const send = vi.fn();
+              const close = vi.fn();
+
+              const promise = localEngine.applyFaults(unitId, result, send, close);
+
+              // Before delay elapses, send should NOT have been called
+              if (delayMs > 1) {
+                await vi.advanceTimersByTimeAsync(delayMs - 1);
+                expect(send).not.toHaveBeenCalled();
+              }
+
+              // After delay elapses, send should have been called with the PDU
+              await vi.advanceTimersByTimeAsync(1);
+              await promise;
+
+              expect(send).toHaveBeenCalledTimes(1);
+              expect(send).toHaveBeenCalledWith(pdu);
+              expect(close).not.toHaveBeenCalled();
+            } finally {
+              vi.useRealTimers();
+            }
+          },
+        ),
+        { numRuns: 100 },
+      );
+    });
+  });
+
+  /**
+   * Property 32: Slow Response Duration Expiry
+   *
+   * For any slow_response fault with a configured duration, after the duration
+   * elapses from activation time, the fault SHALL no longer apply to subsequent
+   * requests (response is sent immediately with no delay).
+   *
+   * **Validates: Requirements 14.2**
+   */
+  describe('Property 32: Slow Response Duration Expiry', () => {
+    it('fault deactivates after duration and response is sent immediately', async () => {
+      await fc.assert(
+        fc.asyncProperty(
+          // delayMs between 1 and 60000
+          fc.integer({ min: 1, max: 60000 }),
+          // duration of the fault between 1 and 120000 ms
+          fc.integer({ min: 1, max: 120000 }),
+          // activatedAt: some start time
+          fc.integer({ min: 0, max: 10000 }),
+          // unitId 1-247
+          fc.integer({ min: 1, max: 247 }),
+          // arbitrary PDU payload
+          fc.uint8Array({ minLength: 1, maxLength: 10 }),
+          async (delayMs, duration, activatedAt, unitId, pduBytes) => {
+            const clockObj = { now: activatedAt };
+            const getClock = () => clockObj.now;
+            const localStore = new RegisterStore(
+              [{ name: 'reg0', address: 0, type: 'uint16', initialValue: 0 }],
+              getClock,
+            );
+            const localStores = new Map<number, RegisterStore>([[unitId, localStore]]);
+            const localEngine = new FaultEngine(localStores, getClock);
+
+            const fault: ActiveFault = {
+              type: 'slow_response',
+              target: String(unitId),
+              activatedAt,
+              duration,
+              params: { delayMs },
+            };
+            localEngine.activate(fault);
+
+            // Advance clock past activation + duration and tick to expire faults
+            clockObj.now = activatedAt + duration;
+            localEngine.tick(clockObj.now);
+
+            // After expiry, applyFaults should send immediately (no delay)
+            const pdu = Buffer.from(pduBytes);
+            const result: RouteResult = { type: 'response', pdu };
+            const send = vi.fn();
+            const close = vi.fn();
+
+            await localEngine.applyFaults(unitId, result, send, close);
+
+            // Response sent immediately, no delay
+            expect(send).toHaveBeenCalledTimes(1);
+            expect(send).toHaveBeenCalledWith(pdu);
+            expect(close).not.toHaveBeenCalled();
+          },
+        ),
+        { numRuns: 100 },
+      );
     });
   });
 });

@@ -210,7 +210,7 @@ Bottom-up implementation of a fault-injecting Modbus TCP device simulator. Tasks
     - Track active faults per device/register, handle duration-based expiry
     - _Requirements: 13.1–13.4, 14.1–14.4, 15.1–15.2_
 
-  - [ ]* 9.2 Write property tests for fault engine (Properties 31, 32)
+  - [x] 9.2 Write property tests for fault engine (Properties 31, 32)
     - **Property 31: Slow Response Delay Application**
     - **Property 32: Slow Response Duration Expiry**
     - Create `tests/faults/fault-engine.test.ts`
