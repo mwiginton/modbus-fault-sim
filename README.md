@@ -1,4 +1,4 @@
-# modbus-fault-sim
+# Modbus Fault Simulator
 
 Testing Modbus client code against failure conditions is difficult, because real hardware does not fail on demand. This tool runs virtual Modbus TCP devices defined in a YAML file and injects faults on a schedule you control: freezing a register, delaying responses, dropping the connection, or returning an exception. Point your client at it to verify how your error handling behaves.
 
